@@ -6,9 +6,9 @@ import MainContent from './components/MainContent.jsx';
 const App = () => {
   return (
     <div>
-      <Header/>
-      <MainContent/>
-      <Footer/>
+      <Header />
+      <MainContent />
+      <Footer />
       
     </div>
   )
