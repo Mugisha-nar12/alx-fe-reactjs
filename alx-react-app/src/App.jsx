@@ -7,9 +7,10 @@ import UserProfile from './components/UserProfile.jsx';
 const App = () => {
   return (
     <div>
-      <Header/>
-      <MainContent/>
-      <Footer/>
+      <Header />
+      <MainContent />
+      <UserProfile name="Alice" age="25" bio="Loves hiking and photography" />
+      <Footer />
       
     </div>
   )
