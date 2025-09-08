@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
   const navStyle = {
-    backgroundColor: '#282c34',
+    backgroundColor: '#181e29ff',
     padding: '15px 30px',
     display: 'flex',
     justifyContent: 'space-between',
@@ -16,7 +16,7 @@ const Navbar = () => {
   };
 
   const brandStyle = {
-    color: '#0d9fd4d3',
+    color: '#12a9e0d3',
     textDecoration: 'none',
     fontSize: '1.5em',
     fontWeight: 'bold',
@@ -41,7 +41,7 @@ const Navbar = () => {
   };
 
   const activeLinkStyle = {
-    backgroundColor: '#61dafb',
+    backgroundColor: '#34b4d8ff',
     color: '#282c34',
   };
 

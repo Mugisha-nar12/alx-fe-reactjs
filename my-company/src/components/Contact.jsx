@@ -30,7 +30,7 @@ const Contact = () => {
     padding: '10px 0px',
     margin: '20px 5px',
     maxWidth: '800px',
-    backgroundColor: '#dbdbdbff',
+    backgroundColor: '#f9f9f9',
     borderRadius: '8px',
     boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
     textAlign: 'left',

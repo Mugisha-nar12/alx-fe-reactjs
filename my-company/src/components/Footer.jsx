@@ -4,7 +4,8 @@ const Footer = () => {
   return (
     <div style={{
       padding: '20px',
-      borderTop: '1px solid #ccc'
+      borderTop: '1px solid #ccc',
+      backgroundColor:'#171717ff'
     }}>
       <ul style={{
         display: 'flex',
