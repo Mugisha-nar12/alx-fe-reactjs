@@ -2,6 +2,7 @@ import { create } from 'zustand';
 
 const useRecipeStore = create((set) => ({
   recipes: [],
+  favorites: [],
   searchTerm: '',
   recommendations: [],
   
@@ -22,11 +23,13 @@ const useRecipeStore = create((set) => ({
     recipes: state.recipes.filter((recipe) => recipe.id !== id),
   })),
 
-  toggleFavorite: (id) => set((state) => ({
-    recipes: state.recipes.map((recipe) =>
+  toggleFavorite: (id) => set((state) => {
+    const recipes = state.recipes.map((recipe) =>
       recipe.id === id ? { ...recipe, isFavorite: !recipe.isFavorite } : recipe
-    ),
-  })),
+    );
+    const favorites = recipes.filter((recipe) => recipe.isFavorite);
+    return { recipes, favorites };
+  }),
 
   addRecommendation: (recipe) => set((state) => {
     if (state.recommendations.some(r => r.id === recipe.id)) {
