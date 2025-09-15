@@ -1,11 +1,12 @@
-import { Outlet } from 'react-router-dom';
+import AddRecipeForm from './components/AddRecipeForm';
+import RecipeList from './components/RecipeList';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <h1>Recipe Sharing App</h1>
-      <Outlet />
+      <AddRecipeForm />
+      <RecipeList />
     </div>
   );
 }
