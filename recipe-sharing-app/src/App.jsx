@@ -4,14 +4,10 @@ import AddRecipeForm from './components/AddRecipeForm';
 import RecipeList from './components/RecipeList';
 import RecipeDetails from './components/RecipeDetails';
 import EditRecipeForm from './components/EditRecipeForm';
-import { useState } from 'react';
+import useRecipeStore from './components/recipeStore';
 
 function App() {
-  const [recipes, setRecipes] = useState([]);
-
-  const addRecipe = (recipe) => {
-    setRecipes([...recipes, recipe]);
-  };
+  const { recipes, addRecipe } = useRecipeStore();
 
   return (
     <Router>
