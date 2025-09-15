@@ -1,5 +1,5 @@
 import React from 'react';
-import useRecipeStore from './RecipeStore';
+import useRecipeStore from './recipeStore';
 import { Link } from 'react-router-dom';
 import './RecipeList.css';
 
