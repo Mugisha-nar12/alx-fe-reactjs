@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import AppLayout from './components/AppLayout';
 import HomePage from './pages/HomePage';
 import AddRecipePage from './pages/AddRecipePage';
-import RecipeDetailPage from './pages/RecipeDetailPage';
+import RecipeDetails from './components/RecipeDetails';
 import EditRecipePage from './pages/EditRecipePage';
 import FavoritesPage from './pages/FavoritesPage';
 import RecommendationsPage from './pages/RecommendationsPage';
@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     element: <AppLayout />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: 'recipe/:id', element: <RecipeDetailPage /> },
+      { path: 'recipe/:id', element: <RecipeDetails /> },
       { path: 'add-recipe', element: <AddRecipePage /> },
       { path: 'edit-recipe/:id', element: <EditRecipePage /> },
       { path: 'favorites', element: <FavoritesPage /> },

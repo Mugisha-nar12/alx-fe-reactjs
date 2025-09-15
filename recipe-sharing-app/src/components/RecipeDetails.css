@@ -1,0 +1,33 @@
+.recipe-detail-container {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.recipe-detail-actions {
+  margin-bottom: 20px;
+}
+
+.recipe-detail-actions button,
+.recipe-detail-actions .edit-link {
+  margin-right: 10px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.recipe-detail-actions button {
+  background-color: #007bff;
+}
+
+.recipe-detail-actions .edit-link {
+  background-color: #28a745;
+}
+
+.recipe-detail-actions .delete-button {
+  background-color: #dc3545;
+}
