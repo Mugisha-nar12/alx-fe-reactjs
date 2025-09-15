@@ -5,9 +5,11 @@ import RecipeList from './components/RecipeList';
 import RecipeDetails from './components/RecipeDetails';
 import EditRecipeForm from './components/EditRecipeForm';
 import useRecipeStore from './components/recipeStore';
+import FavoriteRecipes from './components/FavoriteRecipes';
+import RecommendedRecipes from './components/RecommendedRecipes';
 
 function App() {
-  const { recipes, addRecipe } = useRecipeStore();
+  const { addRecipe } = useRecipeStore();
 
   return (
     <Router>
@@ -17,7 +19,9 @@ function App() {
           <Route path="/" element={
             <>
               <AddRecipeForm addRecipe={addRecipe} />
-              <RecipeList recipes={recipes} />
+              <FavoriteRecipes />
+              <RecommendedRecipes />
+              <RecipeList />
             </>
           } />
           <Route path="/recipe/:id" element={<RecipeDetails />} />
