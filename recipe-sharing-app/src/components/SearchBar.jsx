@@ -1,5 +1,5 @@
 import React from 'react';
-import useRecipeStore from '../store/RecipeStore';
+import useRecipeStore from './RecipeStore';
 import '../index.css';
 
 const SearchBar = () => {
