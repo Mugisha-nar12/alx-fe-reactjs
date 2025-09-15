@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useRecipeStore from '../store/RecipeStore';
+import useRecipeStore from './recipeStore';
 
 import './Form.css';
 

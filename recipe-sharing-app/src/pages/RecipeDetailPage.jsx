@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import useRecipeStore from '../store/RecipeStore';
+import useRecipeStore from '../components/recipeStore';
+
 import { Link } from 'react-router-dom';
 import './RecipeDetailPage.css';
 
