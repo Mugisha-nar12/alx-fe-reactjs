@@ -21,12 +21,8 @@ export const searchUsers = ({ query, location, minRepos }) => {
     searchQuery += `+repos:>${minRepos}`;
   }
 
-  return apiClient
-    .get('/search/users', {
-      params: {
-        q: searchQuery,
-      },
-    })
+  return axios
+    .get(`https://api.github.com/search/users?q=${searchQuery}`)
     .then((response) => {
       const userPromises = response.data.items.map((user) =>
         fetchUserData(user.login)

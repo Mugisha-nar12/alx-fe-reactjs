@@ -47,7 +47,7 @@ const Search = () => {
     setUsers([]);
 
     try {
-      const userResults = await searchUsers(username, location);
+      const userResults = await searchUsers({ query: username, location });
       setUsers(userResults);
     } catch (err) {
       setError(err.message);
