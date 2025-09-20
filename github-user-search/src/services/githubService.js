@@ -22,21 +22,21 @@ const handleApiError = (error) => {
 };
 
 export const searchUsers = async (searchParams, page = 1) => {
-  const { query, location, repos } = searchParams;
+  const { query, location, minRepos } = searchParams;
 
   const queryParts = [];
   if (query) {
     const quotedQuery = query.includes(' ') ? `"${query}"` : query;
     queryParts.push(quotedQuery);
-  }
-  if (location) {
+
     const quotedLocation = location.includes(' ') ? `"${location}"` : location;
     queryParts.push(`location:${quotedLocation}`);
   }
-  if (repos) {
-    queryParts.push(`repos:>${repos}`);
+ 
+  if (minRepos) {
+    queryParts.push(`repos:>${minRepos}`);
   }
-
+  
   if (queryParts.length === 0) {
     return { items: [], total_count: 0 };
   }
