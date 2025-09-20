@@ -28,15 +28,14 @@ export const searchUsers = async (searchParams, page = 1) => {
   if (query) {
     const quotedQuery = query.includes(' ') ? `"${query}"` : query;
     queryParts.push(quotedQuery);
-
     const quotedLocation = location.includes(' ') ? `"${location}"` : location;
     queryParts.push(`location:${quotedLocation}`);
   }
  
-  if (minRepos) {
+  if (minRepos && !isNaN(minRepos)) {
     queryParts.push(`repos:>${minRepos}`);
   }
-  
+
   if (queryParts.length === 0) {
     return { items: [], total_count: 0 };
   }
