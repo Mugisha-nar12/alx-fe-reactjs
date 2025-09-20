@@ -9,17 +9,19 @@ function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleSearch = async (query) => {
+  const handleSearch = (query) => {
     setLoading(true);
     setError(null);
-    try {
-      const usersData = await searchUsers(query);
-      setUsers(usersData);
-    } catch (err) {
-      setError('An error occurred while fetching users.');
-    } finally {
-      setLoading(false);
-    }
+    searchUsers(query)
+      .then((usersData) => {
+        setUsers(usersData);
+      })
+      .catch((err) => {
+        setError('An error occurred while fetching users.');
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (

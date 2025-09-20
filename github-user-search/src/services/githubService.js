@@ -12,43 +12,38 @@ const handleApiError = (error) => {
   throw new Error('Failed to fetch data from GitHub API');
 };
 
-export const searchUsers = async ({ query, location, minRepos }) => {
-  try {
-    let searchQuery = query;
-    if (location) {
-      searchQuery += `+location:${location}`;
-    }
-    if (minRepos) {
-      searchQuery += `+repos:>${minRepos}`;
-    }
+export const searchUsers = ({ query, location, minRepos }) => {
+  let searchQuery = query;
+  if (location) {
+    searchQuery += `+location:${location}`;
+  }
+  if (minRepos) {
+    searchQuery += `+repos:>${minRepos}`;
+  }
 
-    const response = await apiClient.get('/search/users', {
+  return apiClient
+    .get('/search/users', {
       params: {
         q: searchQuery,
       },
-    });
-
-    const users = await Promise.all(
-      response.data.items.map(async (user) => {
-        const userDetails = await fetchUserData(user.login);
-        return {
+    })
+    .then((response) => {
+      const userPromises = response.data.items.map((user) =>
+        fetchUserData(user.login)
+      );
+      return Promise.all(userPromises).then((userProfiles) => {
+        return response.data.items.map((user, index) => ({
           ...user,
-          ...userDetails,
-        };
-      })
-    );
-
-    return users;
-  } catch (error) {
-    handleApiError(error);
-  }
+          ...userProfiles[index],
+        }));
+      });
+    })
+    .catch(handleApiError);
 };
 
-export const fetchUserData = async (username) => {
-  try {
-    const response = await apiClient.get(`/users/${username}`);
-    return response.data;
-  } catch (error) {
-    handleApiError(error);
-  }
+export const fetchUserData = (username) => {
+  return apiClient
+    .get(`/users/${username}`)
+    .then((response) => response.data)
+    .catch(handleApiError);
 };
