@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useInfiniteQuery } from 'react-query';
+import { Link } from 'react-router-dom';
 import { searchUsers } from '../services/githubService';
-import UserCard from './UserCard';
 import Spinner from './Spinner';
 import SearchIcon from '../assets/search.svg?react';
+import LocationIcon from '../assets/location.svg?react';
+import RepoIcon from '../assets/fork.svg?react';
 
 function Search() {
   const [query, setQuery] = useState('');
@@ -107,7 +109,39 @@ function Search() {
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
             {data.pages.map((page) =>
-              page.items.map((user) => <UserCard key={user.id} user={user} />)
+              page.items.map((user) => (
+                <Link
+                  key={user.id}
+                  to={`/user/${user.login}`}
+                  className="block p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
+                >
+                  <div className="flex items-center gap-4 mb-4">
+                    <img
+                      src={user.avatar_url}
+                      alt={`${user.login}'s avatar`}
+                      className="w-16 h-16 rounded-full border-2 border-gray-200"
+                    />
+                    <div className="overflow-hidden">
+                      <p className="text-xl font-bold text-gray-800 truncate">
+                        {user.login}
+                      </p>
+                      <p className="text-sm text-gray-500">View Profile &rarr;</p>
+                    </div>
+                  </div>
+                  <div className="text-sm text-gray-600 space-y-2">
+                    {user.location && (
+                      <div className="flex items-center gap-2">
+                        <LocationIcon className="w-4 h-4 opacity-75" />
+                        <span>{user.location}</span>
+                      </div>
+                    )}
+                    <div className="flex items-center gap-2">
+                      <RepoIcon className="w-4 h-4 opacity-75" />
+                      <span>{user.public_repos} Repositories</span>
+                    </div>
+                  </div>
+                </Link>
+              ))
             )}
           </div>
           {hasNextPage && (
