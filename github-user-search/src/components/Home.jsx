@@ -13,10 +13,10 @@ function Home() {
     setLoading(true);
     setError(null);
     try {
-      const { items } = await searchUsers(searchParams);
-      setUsers(items);
+      const usersData = await searchUsers(searchParams);
+      setUsers(usersData);
     } catch (err) {
-      setError(err.message);
+      setError("Something went wrong. We're sorry for the inconvenience. Please try refreshing the page.");
     } finally {
       setLoading(false);
     }

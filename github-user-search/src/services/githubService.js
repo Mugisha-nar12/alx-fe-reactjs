@@ -1,62 +1,44 @@
+
 import axios from 'axios';
 
-const GITHUB_API_TOKEN = import.meta.env.VITE_APP_GITHUB_API_KEY;
-const GITHUB_API_URL = 'https://api.github.com';
-
-if (!GITHUB_API_TOKEN) {
-  console.error('VITE_APP_GITHUB_API_KEY is not defined. Please add it to your .env file.');
-}
+const API_URL = 'https://api.github.com';
 
 const apiClient = axios.create({
-  baseURL: GITHUB_API_URL,
-  headers: {
-    Accept: 'application/vnd.github.v3+json',
-    Authorization: `token ${GITHUB_API_TOKEN}`,
-  },
+  baseURL: API_URL,
 });
 
 const handleApiError = (error) => {
-  const message = error.response?.data?.message || error.message || 'An unknown error occurred';
-  console.error('GitHub API Error:', message);
-  throw new Error(message);
+  console.error('API Error:', error.response || error.message);
+  throw new Error('Failed to fetch data from GitHub API');
 };
 
-export const searchUsers = async (searchParams, page = 1) => {
-  const { query, location, minRepos } = searchParams;
-
-  const queryParts = [];
-  if (query) {
-    const quotedQuery = query.includes(' ') ? `"${query}"` : query;
-    queryParts.push(quotedQuery);
-  }
-  if (location) {
-    const quotedLocation = location.includes(' ') ? `"${location}"` : location;
-    queryParts.push(`location:${quotedLocation}`);
-  }
- 
-  if (minRepos && !isNaN(minRepos)) {
-    queryParts.push(`repos:>${minRepos}`);
-  }
-
-  if (queryParts.length === 0) {
-    return { items: [], total_count: 0 };
-  }
-
-  const q = queryParts.join(' ');
-
+export const searchUsers = async ({ query, location, minRepos }) => {
   try {
+    let searchQuery = query;
+    if (location) {
+      searchQuery += `+location:${location}`;
+    }
+    if (minRepos) {
+      searchQuery += `+repos:>${minRepos}`;
+    }
+
     const response = await apiClient.get('/search/users', {
-      params: { q, per_page: 20, page },
+      params: {
+        q: searchQuery,
+      },
     });
 
-    const usersWithDetails = await Promise.all(
+    const users = await Promise.all(
       response.data.items.map(async (user) => {
-        const userDetails = await apiClient.get(`/users/${user.login}`);
-        return userDetails.data;
+        const userDetails = await fetchUserData(user.login);
+        return {
+          ...user,
+          ...userDetails,
+        };
       })
     );
 
-    return { ...response.data, items: usersWithDetails };
+    return users;
   } catch (error) {
     handleApiError(error);
   }
@@ -64,13 +46,8 @@ export const searchUsers = async (searchParams, page = 1) => {
 
 export const fetchUserData = async (username) => {
   try {
-    const [profile, repositories] = await Promise.all([
-      apiClient.get(`/users/${username}`),
-      apiClient.get(`/users/${username}/repos`, {
-        params: { sort: 'updated', per_page: 10 },
-      }),
-    ]);
-    return { profile: profile.data, repositories: repositories.data };
+    const response = await apiClient.get(`/users/${username}`);
+    return response.data;
   } catch (error) {
     handleApiError(error);
   }
