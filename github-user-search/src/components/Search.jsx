@@ -30,11 +30,10 @@
 
 
 import { useState } from 'react';
-import { searchUsers } from '../services/githubService';
+import { fetchUserData } from '../services/githubService';
 
 const Search = () => {
   const [username, setUsername] = useState('');
-  const [location, setLocation] = useState('');
   const [users, setUsers] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -47,8 +46,8 @@ const Search = () => {
     setUsers([]);
 
     try {
-      const userResults = await searchUsers({ query: username, location });
-      setUsers(userResults);
+      const userResult = await fetchUserData(username);
+      setUsers([userResult]);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -66,7 +65,7 @@ const Search = () => {
       <div className="w-full max-w-2xl mx-auto">
         <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-800 shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
           <div className="flex flex-wrap -mx-3 mb-4">
-            <div className="w-full md:w-1/2 px-3 mb-4 md:mb-0">
+            <div className="w-full px-3 mb-4 md:mb-0">
               <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="username">
                 GitHub Username
               </label>
@@ -77,19 +76,6 @@ const Search = () => {
                 placeholder="Enter a GitHub username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-            <div className="w-full md:w-1/2 px-3">
-              <label className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" htmlFor="location">
-                Location
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 dark:border-gray-600 leading-tight focus:outline-none focus:shadow-outline"
-                id="location"
-                type="text"
-                placeholder="Enter a location"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
               />
             </div>
           </div>
