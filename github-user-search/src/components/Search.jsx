@@ -13,6 +13,8 @@ function Search() {
   const [perPage, setPerPage] = useState('');
   const [searchParams, setSearchParams] = useState({ query: '', location: '', perPage: '' });
 
+  const fetchUserData = ({ pageParam = 1 }) => searchUsers(searchParams, pageParam);
+
   const {
     data,
     isLoading,
@@ -23,7 +25,7 @@ function Search() {
     isFetchingNextPage,
   } = useInfiniteQuery(
     ['searchUsers', searchParams],
-    ({ pageParam = 1 }) => searchUsers(searchParams, pageParam),
+    fetchUserData,
     {
       enabled: !!searchParams.query || !!searchParams.location,
       retry: false,
