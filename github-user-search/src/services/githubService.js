@@ -24,7 +24,6 @@ const handleApiError = (error) => {
 export const searchUsers = async (searchParams, page = 1) => {
   const { query, location, minRepos } = searchParams;
 
-  
   const queryParts = [];
   if (query) {
     const quotedQuery = query.includes(' ') ? `"${query}"` : query;
@@ -34,10 +33,11 @@ export const searchUsers = async (searchParams, page = 1) => {
     const quotedLocation = location.includes(' ') ? `"${location}"` : location;
     queryParts.push(`location:${quotedLocation}`);
   }
-
+ 
   if (minRepos && !isNaN(minRepos)) {
     queryParts.push(`repos:>${minRepos}`);
   }
+
   if (queryParts.length === 0) {
     return { items: [], total_count: 0 };
   }
