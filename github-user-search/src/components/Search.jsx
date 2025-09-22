@@ -1,34 +1,3 @@
-// import { useState } from 'react';
-
-// const Search = ({ onSearch }) => {
-//   const [query, setQuery] = useState('');
-
-//   const handleQueryChange = (e) => {
-//     setQuery(e.target.value);
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     onSearch(query);
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       <input
-//         name="query"
-//         type="text"
-//         value={query}
-//         onChange={handleQueryChange}
-//         placeholder="Search users..."
-//       />
-//       <button type="submit">Search</button>
-//     </form>
-//   );
-// };
-
-// export default Search;
-
-
 import { useState } from 'react';
 import { searchUsers, fetchUserData } from '../services/githubService';
 
@@ -38,12 +7,14 @@ const Search = () => {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [searched, setSearched] = useState(false);
 
   const handleSearch = async () => {
     if (!username) return;
 
     setLoading(true);
     setError(null);
+    setSearched(true);
     setUsers([]);
 
     try {
@@ -140,6 +111,9 @@ const Search = () => {
               </div>
             ))}
           </div>
+        )}
+        {searched && !loading && !error && users.length === 0 && (
+            <p className="text-center text-gray-500 dark:text-gray-400">Looks like we cant find the user</p>
         )}
       </div>
     </div>
