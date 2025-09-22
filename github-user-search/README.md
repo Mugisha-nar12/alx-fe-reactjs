@@ -17,7 +17,7 @@ The main goal of this project is to provide a user-friendly interface to search 
 **Detailed User Information:** View detailed information for each user, including:
 Avatar
 Name and Username
-*Bio
+Bio
 Number of followers
 Number of users they are following
 Number of public repositories
