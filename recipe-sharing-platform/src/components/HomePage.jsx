@@ -4,6 +4,7 @@ import { RecipeCard } from "./RecipeCard";
 import recipesData from "../data.json";
 
 // Styling for hover, rounded, and shadow effects are in RecipeCard.jsx
+// Navigation logic is handled in RecipeCard.jsx
 
 const HomePage = ({ recipes: recipesFromProps }) => {
   const [recipes, setRecipes] = useState(recipesFromProps);
