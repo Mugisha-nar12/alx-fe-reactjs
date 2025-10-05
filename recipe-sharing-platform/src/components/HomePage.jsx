@@ -3,6 +3,8 @@ import { RecipeCard } from "./RecipeCard";
 // eslint-disable-next-line no-unused-vars
 import recipesData from "../data.json";
 
+// Styling for hover, rounded, and shadow effects are in RecipeCard.jsx
+
 const HomePage = ({ recipes: recipesFromProps }) => {
   const [recipes, setRecipes] = useState(recipesFromProps);
 
