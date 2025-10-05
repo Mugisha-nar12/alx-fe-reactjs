@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { RecipeCard } from "./RecipeCard";
+import recipesData from "../data.json";
 
-const HomePage = ({ recipes }) => {
+const HomePage = () => {
+  const [recipes, setRecipes] = useState([]);
+
+  useEffect(() => {
+    setRecipes(recipesData);
+  }, []);
+
   return (
     <div className="py-8">
       <h1 className="text-4xl font-extrabold text-gray-900 mb-8 text-center">
