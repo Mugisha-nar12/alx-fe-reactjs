@@ -9,7 +9,7 @@ const AddRecipeForm = ({ onAddRecipe }) => {
   const [summary, setSummary] = useState("");
   const [image, setImage] = useState("");
   const [ingredients, setIngredients] = useState("");
-  const [instructions, setInstructions] = useState("");
+  const [steps, setSteps] = useState("");
   const [errors, setErrors] = useState({});
 
   const validateForm = () => {
@@ -18,8 +18,7 @@ const AddRecipeForm = ({ onAddRecipe }) => {
     if (!summary.trim()) newErrors.summary = "Summary is required";
     if (!image.trim()) newErrors.image = "Image URL is required";
     if (!ingredients.trim()) newErrors.ingredients = "Ingredients are required";
-    if (!instructions.trim())
-      newErrors.instructions = "Instructions are required";
+    if (!steps.trim()) newErrors.steps = "Steps are required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -39,7 +38,7 @@ const AddRecipeForm = ({ onAddRecipe }) => {
         .split("\n")
         .map((item) => item.trim())
         .filter((item) => item !== ""),
-      instructions: instructions
+      steps: steps
         .split("\n")
         .map((item) => item.trim())
         .filter((item) => item !== ""),
@@ -134,21 +133,21 @@ const AddRecipeForm = ({ onAddRecipe }) => {
 
         <div>
           <label
-            htmlFor="instructions"
+            htmlFor="steps"
             className="block text-sm font-medium text-gray-700 mb-1"
           >
-            Instructions (one step per line)
+            Steps (one step per line)
           </label>
           <textarea
-            id="instructions"
+            id="steps"
             rows="8"
             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
-            value={instructions}
-            onChange={(e) => setInstructions(e.target.value)}
+            value={steps}
+            onChange={(e) => setSteps(e.target.value)}
             placeholder="e.g.,&#10;1. Preheat oven to 350°F.&#10;2. Mix dry ingredients.&#10;..."
           ></textarea>
-          {errors.instructions && (
-            <p className="text-red-500 text-xs mt-1">{errors.instructions}</p>
+          {errors.steps && (
+            <p className="text-red-500 text-xs mt-1">{errors.steps}</p>
           )}
         </div>
 
