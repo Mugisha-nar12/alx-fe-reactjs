@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { RecipeCard } from "./RecipeCard";
+// eslint-disable-next-line no-unused-vars
+import recipesData from "../data.json";
 
-const HomePage = ({ recipes }) => {
+const HomePage = ({ recipes: recipesFromProps }) => {
+  const [recipes, setRecipes] = useState(recipesFromProps);
+
+  useEffect(() => {
+    setRecipes(recipesFromProps);
+  }, [recipesFromProps]);
+
   return (
     <div className="py-8">
       <h1 className="text-4xl font-extrabold text-gray-900 mb-8 text-center">
