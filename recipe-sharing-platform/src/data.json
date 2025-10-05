@@ -1,0 +1,77 @@
+[
+  {
+    "id": "1",
+    "title": "Spaghetti Carbonara",
+    "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
+    "image": "https://tse2.mm.bing.net/th/id/OIP.iu4VENBVWdyQ2bn5LiNAwwHaE8?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "ingredients": [
+      "200g spaghetti",
+      "100g guanciale (or pancetta/bacon)",
+      "2 large eggs",
+      "50g Pecorino Romano cheese, grated",
+      "Freshly ground black pepper"
+    ],
+    "instructions": [
+      "Cook spaghetti according to package directions until al dente.",
+      "While pasta cooks, cut guanciale into small strips and cook in a pan over medium heat until crispy. Remove guanciale, leaving rendered fat in the pan.",
+      "In a bowl, whisk eggs, grated Pecorino Romano, and a generous amount of black pepper.",
+      "Drain spaghetti, reserving some pasta water. Add hot spaghetti to the pan with guanciale fat. Toss quickly.",
+      "Pour egg mixture over the pasta, tossing vigorously to coat. Add a splash of reserved pasta water if needed to create a creamy sauce. The heat from the pasta will cook the eggs without scrambling them.",
+      "Stir in crispy guanciale. Serve immediately with extra Pecorino and black pepper."
+    ]
+  },
+  {
+    "id": "2",
+    "title": "Chicken Tikka Masala",
+    "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
+    "image": "https://www.istockphoto.com/photo/delicious-creamy-chicken-tikka-masala-surrounded-by-ingredients-close-up-in-a-bowl-gm1735060474-542140447",
+    "ingredients": [
+      "500g boneless, skinless chicken thighs, cut into cubes",
+      "1 cup plain yogurt",
+      "2 tbsp lemon juice",
+      "1 tbsp ginger-garlic paste",
+      "1 tsp ground cumin",
+      "1 tsp ground coriander",
+      "1/2 tsp turmeric powder",
+      "1/2 tsp chili powder",
+      "1 tbsp garam masala",
+      "1 tbsp oil",
+      "1 onion, chopped",
+      "1 can (400g) crushed tomatoes",
+      "1/2 cup heavy cream",
+      "Fresh cilantro for garnish"
+    ],
+    "instructions": [
+      "Marinate chicken: In a bowl, combine chicken, yogurt, lemon juice, ginger-garlic paste, cumin, coriander, turmeric, chili powder, and half of the garam masala. Marinate for at least 30 minutes, or overnight in the fridge.",
+      "Cook chicken: Heat oil in a large pan over medium-high heat. Add marinated chicken and cook until browned and cooked through. Remove chicken from pan and set aside.",
+      "Make sauce: In the same pan, add chopped onion and cook until softened. Add remaining ginger-garlic paste and cook for 1 minute. Stir in crushed tomatoes, the rest of the garam masala, and a pinch of salt. Bring to a simmer.",
+      "Stir in cooked chicken and heavy cream. Simmer for 10-15 minutes until sauce thickens. Garnish with fresh cilantro and serve with rice or naan."
+    ]
+  },
+  {
+    "id": "3",
+    "title": "Vegetable Stir-fry",
+    "summary": "A quick and healthy dish packed with fresh vegetables and a savory sauce.",
+    "image": "https://www.bing.com/images/search?view=detailV2&ccid=WnTZWoPA&id=3EC4F05A60B6A92D96128126C16592B4D972930F&thid=OIP.WnTZWoPAU92PvL7YNmCbHwAAAA&mediaurl=https://www.shutterstock.com/image-photo/vegetable-stir-fry-healthy-eating-260nw-381061834.jpg&exph=280&expw=380&q=Vegetable%20Stir-fry%20image&ck=8F8184BB362A48B293549B12BD07C5C2&idpp=rc&idpview=singleimage&form=rc2idp",
+    "ingredients": [
+      "2 tbsp soy sauce",
+      "1 tbsp oyster sauce (optional)",
+      "1 tbsp rice vinegar",
+      "1 tsp sesame oil",
+      "1/2 tsp sugar",
+      "1 tbsp cornstarch",
+      "2 tbsp water",
+      "1 tbsp vegetable oil",
+      "2 cups mixed vegetables (broccoli, carrots, bell peppers, snap peas)",
+      "2 cloves garlic, minced",
+      "1 inch ginger, grated"
+    ],
+    "instructions": [
+      "Prepare sauce: In a small bowl, whisk together soy sauce, oyster sauce (if using), rice vinegar, sesame oil, and sugar. In another small bowl, mix cornstarch with water to create a slurry.",
+      "Heat vegetable oil in a large wok or skillet over high heat. Add garlic and ginger, stir-fry for 30 seconds until fragrant.",
+      "Add mixed vegetables and stir-fry for 3-5 minutes until tender-crisp.",
+      "Pour the sauce mixture over the vegetables. Stir well. Add the cornstarch slurry and stir constantly until the sauce thickens.",
+      "Serve immediately with rice or noodles."
+    ]
+  }
+]
