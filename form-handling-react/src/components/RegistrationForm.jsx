@@ -1,28 +1,18 @@
 import React, { useState } from "react";
 
 const RegistrationForm = () => {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
   const validate = () => {
     let tempErrors = {};
-    if (!formData.username) tempErrors.username = "Username is required";
-    if (!formData.email) tempErrors.email = "Email is required";
-    if (!formData.password) tempErrors.password = "Password is required";
+    if (!username) tempErrors.username = "Username is required";
+    if (!email) tempErrors.email = "Email is required";
+    if (!password) tempErrors.password = "Password is required";
     setErrors(tempErrors);
     return Object.keys(tempErrors).length === 0;
   };
@@ -35,11 +25,9 @@ const RegistrationForm = () => {
       setTimeout(() => {
         setIsSubmitting(false);
         alert("Registration successful!");
-        setFormData({
-          username: "",
-          email: "",
-          password: "",
-        });
+        setUsername("");
+        setEmail("");
+        setPassword("");
       }, 2000);
     }
   };
@@ -61,8 +49,8 @@ const RegistrationForm = () => {
               type="text"
               name="username"
               placeholder="Username"
-              value={formData.username}
-              onChange={handleChange}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               className="block w-full px-4 py-3 text-gray-900 placeholder-gray-500 bg-gray-100 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
             />
             {errors.username && (
@@ -74,8 +62,8 @@ const RegistrationForm = () => {
               type="email"
               name="email"
               placeholder="Email address"
-              value={formData.email}
-              onChange={handleChange}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="block w-full px-4 py-3 text-gray-900 placeholder-gray-500 bg-gray-100 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
             />
             {errors.email && (
@@ -87,8 +75,8 @@ const RegistrationForm = () => {
               type="password"
               name="password"
               placeholder="Password"
-              value={formData.password}
-              onChange={handleChange}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="block w-full px-4 py-3 text-gray-900 placeholder-gray-500 bg-gray-100 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
             />
             {errors.password && (
