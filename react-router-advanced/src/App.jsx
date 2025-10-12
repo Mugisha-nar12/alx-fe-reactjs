@@ -5,6 +5,7 @@ import Profile from "./components/Profile";
 import Posts from "./components/Posts";
 import Post from "./components/Post";
 import ProtectedRoute from "./components/ProtectedRoute";
+import BlogPost from "./components/BlogPost";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Link to="/">Home</Link>
           <Link to="/profile">Profile</Link>
           <Link to="/posts">Posts</Link>
+          <Link to="/blog/1">Blog</Link>
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -27,6 +29,7 @@ function App() {
           />
           <Route path="/posts" element={<Posts />} />
           <Route path="/post/:id" element={<Post />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
         </Routes>
       </div>
     </Router>
