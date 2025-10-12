@@ -1,101 +1,108 @@
-import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import React, { useState } from "react";
 
 const RegistrationForm = () => {
-  const initialValues = {
+  const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
-  };
-
-  const validationSchema = Yup.object({
-    username: Yup.string().required("Username is required"),
-    email: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required"),
-    password: Yup.string().required("Password is required"),
   });
 
-  const handleSubmit = (values, { setSubmitting, resetForm }) => {
-    // Simulate API call
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-      resetForm();
-    }, 2000);
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const validate = () => {
+    let tempErrors = {};
+    if (!formData.username) tempErrors.username = "Username is required";
+    if (!formData.email) tempErrors.email = "Email is required";
+    if (!formData.password) tempErrors.password = "Password is required";
+    setErrors(tempErrors);
+    return Object.keys(tempErrors).length === 0;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validate()) {
+      setIsSubmitting(true);
+      // Simulate API call
+      setTimeout(() => {
+        setIsSubmitting(false);
+        alert("Registration successful!");
+        setFormData({
+          username: "",
+          email: "",
+          password: "",
+        });
+      }, 2000);
+    }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-500 to-purple-600">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-2xl shadow-2xl">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-800 to-gray-900">
+      <div className="w-full max-w-lg p-10 space-y-8 bg-white rounded-2xl shadow-2xl">
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900">
-            Create Your Account
+          <h1 className="text-4xl font-bold text-gray-900">
+            Create an Account
           </h1>
-          <p className="mt-2 text-sm text-gray-600">
-            Get started with your free account
+          <p className="mt-2 text-md text-gray-600">
+            Join us and start your journey
           </p>
         </div>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
-          {({ isSubmitting }) => (
-            <Form className="mt-8 space-y-6">
-              <div className="relative">
-                <Field
-                  type="text"
-                  id="username"
-                  name="username"
-                  placeholder="Username"
-                  className="block w-full px-4 py-3 text-gray-900 placeholder-gray-500 bg-gray-100 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                />
-                <ErrorMessage
-                  name="username"
-                  component="div"
-                  className="mt-2 text-sm text-red-600"
-                />
-              </div>
-              <div className="relative">
-                <Field
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Email address"
-                  className="block w-full px-4 py-3 text-gray-900 placeholder-gray-500 bg-gray-100 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                />
-                <ErrorMessage
-                  name="email"
-                  component="div"
-                  className="mt-2 text-sm text-red-600"
-                />
-              </div>
-              <div className="relative">
-                <Field
-                  type="password"
-                  id="password"
-                  name="password"
-                  placeholder="Password"
-                  className="block w-full px-4 py-3 text-gray-900 placeholder-gray-500 bg-gray-100 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                />
-                <ErrorMessage
-                  name="password"
-                  component="div"
-                  className="mt-2 text-sm text-red-600"
-                />
-              </div>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full px-4 py-3 font-bold text-white bg-gradient-to-r from-indigo-600 to-purple-700 rounded-lg hover:from-indigo-700 hover:to-purple-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 transform transition-transform duration-200 hover:scale-105"
-              >
-                {isSubmitting ? "Creating Account..." : "Create Account"}
-              </button>
-            </Form>
-          )}
-        </Formik>
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+          <div className="relative">
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              value={formData.username}
+              onChange={handleChange}
+              className="block w-full px-4 py-3 text-gray-900 placeholder-gray-500 bg-gray-100 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+            />
+            {errors.username && (
+              <p className="mt-2 text-sm text-red-600">{errors.username}</p>
+            )}
+          </div>
+          <div className="relative">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email address"
+              value={formData.email}
+              onChange={handleChange}
+              className="block w-full px-4 py-3 text-gray-900 placeholder-gray-500 bg-gray-100 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+            />
+            {errors.email && (
+              <p className="mt-2 text-sm text-red-600">{errors.email}</p>
+            )}
+          </div>
+          <div className="relative">
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+              className="block w-full px-4 py-3 text-gray-900 placeholder-gray-500 bg-gray-100 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+            />
+            {errors.password && (
+              <p className="mt-2 text-sm text-red-600">{errors.password}</p>
+            )}
+          </div>
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full px-4 py-3 font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-700 rounded-lg hover:from-purple-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 disabled:opacity-50 transform transition-transform duration-200 hover:scale-105"
+          >
+            {isSubmitting ? "Creating Account..." : "Create Account"}
+          </button>
+        </form>
       </div>
     </div>
   );
