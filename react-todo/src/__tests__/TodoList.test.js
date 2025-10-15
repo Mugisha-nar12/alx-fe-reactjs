@@ -25,7 +25,7 @@ test('allows user to add a new todo', async () => {
   fireEvent.change(input, { target: { value: 'Test new todo' } });
   expect(input.value).toBe('Test new todo'); 
 
-  fireEvent.submit(addButton);
+  fireEvent.click(addButton);
 
   await waitFor(() => {
     expect(screen.getByText(/Test new todo/i)).toBeInTheDocument();
